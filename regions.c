@@ -1,3 +1,13 @@
+//-----------------------------------------
+// NAME: Chun Hui Yang
+// STUDENT NUMBER: 7745814
+// COURSE: COMP 2160, SECTION: A01
+// INSTRUCTOR: Franklin Bristow
+// ASSIGNMENT: assignment 4, QUESTION: n/a
+// 
+// REMARKS: map to allocate memory in heap, memory regions
+//
+//-----------------------------------------
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -48,13 +58,17 @@ Boolean rinit(const char *region_name, r_size_t region_size){
     int i = 0;
     NodePtr test = head;
     for(i=0;i<count;i++){
+		//assert(strcmp(region_name,test->name));
         if(strcmp(region_name,test->name)==0){
             return false;
         }
         test= test->next;
+		//assert(test);
     }
     NodePtr newNode = (NodePtr)malloc(sizeof(Node));
     uchar temp[(r_size_t)(ceil((double)region_size/8.0)*8)];
+	//assert(newNode);
+	//assert(temp);
     newNode->buffer = temp;
     newNode->counter = 0;
     newNode->head = NULL;
@@ -104,6 +118,7 @@ Boolean rchoose(const char *region_name){
 const char *rchosen(){
     //assert(chosen);
     if(chosen!=NULL){
+		//assert(chosen->name);
         return chosen->name;
     }
     else{
@@ -189,8 +204,9 @@ r_size_t rsize(void *block_ptr){
 }
 Boolean rfree(void *block_ptr){
     void * ptr = NULL;
+	//precond
     //assert(block_ptr);
-    if(NULL==block_ptr){
+    if(NULL==block_ptr && chosen!=NULL){
       return false;
     }
     //assert(chosen);
@@ -228,6 +244,8 @@ Boolean rfree(void *block_ptr){
     return false;
 }
 void rdestroy(const char *region_name){
+	//precond
+	//assert(region_name);
     NodePtr tempB = NULL;
     NodePtr temp = head;
     Boolean completed = false;
