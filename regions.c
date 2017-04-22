@@ -289,9 +289,6 @@ void rdump(){
         printf("NULL, empty regions.\n");
     }
     else{
-        if(0==count){
-          printf("No regions.\n");
-        }
         int i = 0;
         for(i=0;i<count;i++){
             printf("\nRegion: %s\tsize: %d\tfree space: %d percent\n", temp->name, temp->size,temp->space*100/temp->size);

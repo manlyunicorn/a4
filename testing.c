@@ -1,3 +1,13 @@
+//-----------------------------------------
+// NAME: Chun Hui Yang
+// STUDENT NUMBER: 7745814
+// COURSE: COMP 2160, SECTION: A01
+// INSTRUCTOR: Franklin Bristow
+// ASSIGNMENT: assignment 4, QUESTION: n/a
+// 
+// REMARKS: testing regions
+//
+//-----------------------------------------
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
@@ -13,7 +23,7 @@
 
   static Boolean rc;
   static int *ia;
-  static char *ca1, *ca2, *ca3, *ca4;
+  static char *ca1, *ca2;
   static char *fail;
   static int size = 3023;
   static char *testI[size];
@@ -90,11 +100,6 @@ void testAlloc()
   assert(NULL != ca1);
   ca2 = ralloc(384);
   assert(NULL != ca2);
-  fail = ralloc(384); // not enough memory
-  assert(NULL == fail);
-  assert(rc);
-  ca3 = ralloc(384); // now there's enough memory
-  assert (NULL != ca3);
   for (i = 0; i<size; i++)
   {
     test[i] = ralloc(1);
@@ -111,7 +116,4 @@ void testFree()
 void testDump()
 {
   rdump();
-  rdestroy("hello");
-  rdestroy("hello");
-  rdestroy("no such thing");
 }
