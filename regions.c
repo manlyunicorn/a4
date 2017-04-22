@@ -34,8 +34,8 @@ int count = 0;
 
 Boolean rinit(const char *region_name, r_size_t region_size){
     //precondition check
-    assert(region_name);
-    assert(region_size > 0);
+    //assert(region_name);
+    //assert(region_size > 0);
     if(region_size<=0){
         return false;
     }
@@ -59,11 +59,10 @@ Boolean rinit(const char *region_name, r_size_t region_size){
     newNode->space = newNode->size ;
     newNode->buffer = (uchar *)malloc(newNode->size);
     char *tempCharArray = (char *)malloc(NAME_SIZE);
-    assert(region_name);
     if(region_name!=NULL){
         strcpy(tempCharArray, region_name);
     }
-    assert(tempCharArray);
+    //assert(tempCharArray);
     newNode->name = tempCharArray;
 
     if(count==0){
@@ -72,7 +71,7 @@ Boolean rinit(const char *region_name, r_size_t region_size){
     else{
         Node *temp = head;
         int num = 0;
-        assert(temp->next);
+        //assert(temp->next);
         while(temp->next!=NULL&&num<count-1){
             temp = temp->next;
             num++;
@@ -83,7 +82,7 @@ Boolean rinit(const char *region_name, r_size_t region_size){
     return true;
 }
 Boolean rchoose(const char *region_name){
-    assert(region_name);
+    //assert(region_name);
     if(region_name==NULL){
         return false;
     }
@@ -100,7 +99,7 @@ Boolean rchoose(const char *region_name){
     return false;
 }
 const char *rchosen(){
-    assert(chosen);
+    //assert(chosen);
     if(chosen!=NULL){
         return chosen->name;
     }
@@ -111,7 +110,7 @@ const char *rchosen(){
 void *ralloc(r_size_t block_size){
 
     void * result = NULL;
-    assert(chosen);
+    //assert(chosen);
     if(chosen!=NULL){
         r_size_t roundedSize = (r_size_t)(ceil((double)block_size/8)*8);
         if(chosen->space<block_size){
@@ -171,7 +170,7 @@ void *ralloc(r_size_t block_size){
 }
 r_size_t rsize(void *block_ptr){
     void * ptr = NULL;
-    assert(chosen);
+    //assert(chosen);
     if(chosen!=NULL){
         BlockNodePtr temp = chosen->head;
         while(temp!=NULL){
@@ -187,7 +186,7 @@ r_size_t rsize(void *block_ptr){
 }
 Boolean rfree(void *block_ptr){
     void * ptr = NULL;
-    assert(chosen);
+    //assert(chosen);
     if(chosen!=NULL && block_ptr){
         BlockNodePtr temp = chosen->head;
         BlockNodePtr tempB = NULL;
@@ -225,7 +224,7 @@ void rdestroy(const char *region_name){
     NodePtr tempB = NULL;
     NodePtr temp = head;
     Boolean completed = false;
-    assert(temp);
+    //assert(temp);
     while(temp!=NULL&&!completed){
         if(strcmp(region_name,temp->name)==0){
             count--;
