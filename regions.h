@@ -14,4 +14,4 @@ Boolean rfree(void *block_ptr);
 void rdestroy(const char *region_name);
 void rdump();
 
-#endif#pragma once
+#endif

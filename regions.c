@@ -1,12 +1,15 @@
-#include "regions.h"
-#include <assert.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
 #include <math.h>
+#include "regions.h"
+
+#include <assert.h>
+
 #ifndef NAME_SIZE
-#define NAME_SIZE 1024
+  #define NAME_SIZE 1024
 #endif
+
 typedef unsigned char uchar;
 typedef unsigned long ulong;
 
@@ -186,8 +189,12 @@ r_size_t rsize(void *block_ptr){
 }
 Boolean rfree(void *block_ptr){
     void * ptr = NULL;
+    //assert(block_ptr);
+    if(NULL==block_ptr){
+      return false;
+    }
     //assert(chosen);
-    if(chosen!=NULL && block_ptr){
+    if(chosen!=NULL && block_ptr!=NULL){
         BlockNodePtr temp = chosen->head;
         BlockNodePtr tempB = NULL;
         while(temp!=NULL){
@@ -260,12 +267,12 @@ void rdestroy(const char *region_name){
 void rdump(){
     printf("Summary:\n");
     NodePtr temp = head;
-    if(temp==NULL){
-        printf("NULL\n");
+    if(!temp){
+        printf("NULL, empty regions.\n");
     }
     else{
         if(0==count){
-          printf("No region.\n");
+          printf("No regions.\n");
         }
         int i = 0;
         for(i=0;i<count;i++){
