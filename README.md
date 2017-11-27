@@ -1,4 +1,4 @@
-COMP2160 Assignment 4 2017/04/21
+Assignment 4 2017/04/21
 -------------------
 Compile/Run:
 run
